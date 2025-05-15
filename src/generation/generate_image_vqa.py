@@ -3,6 +3,7 @@ from image_vqa_utils import *  # Assuming all necessary helper functions are her
 import os
 
 from tqdm import tqdm
+import csv
 
 class VQAGenerator:
     def __init__(self, image_path, detection_file_path):
@@ -189,6 +190,6 @@ def process_directory(image_dir, output_csv):
 
 if __name__ == "__main__":
     image_dir = r"dataset/image_data/images/train"
-    output_csv = "vqa_results.csv"
+    output_csv = "vqa_dataset.csv"
     process_directory(image_dir, output_csv)
     print(f"VQA results saved to {output_csv}")
