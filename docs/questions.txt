@@ -1,0 +1,25 @@
+Questions for the Images 
+1. Object counting - 
+1.1 How many objects of a certain class are present? 
+1.2 What are the objects present in the scene? 
+2. Object Localization/Grounding - 
+Where are the objects of a class present in the image?
+3. Object description - 
+3.1 What class is the object present at the bounding box location? 
+3.2 What is the color of the object present at the location? 
+3.3 What is the color of the car at the location?
+4. Surrounding description - 
+4.1 What time of day is it? 
+4.2 What is the scene type? 
+4.3 What is the traffic density? 
+5. Spatial Relationship - 
+What is the relationship between the object of class x at location 1 and class y location 2?
+6. Risk analysis - 
+What are the objects at risk in the image?  
+
+Questions for the Video 
+1. What is the action performed by the ego vehicle?
+2. What is the justification for the action being performed by the ego vehicle?
+
+
+
