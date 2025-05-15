@@ -6,6 +6,8 @@ import numpy as np
 import cv2
 import webcolors
 from collections import Counter
+import math
+import itertools
 
 # Parse labelme
 def parse_labelme_json(json_path):
@@ -21,20 +23,18 @@ def parse_labelme_json(json_path):
             bbox = [min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)]
             detected_objects.append({"label": label, "bbox": bbox})
 
-    return detected_objects, data["imagePath"]
+    return detected_objects
 
 # Object counting and presence
-def count_objects(detections, label):
+def count_objects(detected_objects, label):
     count = 0
-    detected_objects, _ = detections
     # Count the number of objects of a class given the class label
     for obj in detected_objects:
-        print(obj)
         if obj['label'] == label:
             count += 1
     return count
 
-def has_object(detections, label):
+def has_object(detected_objects, label):
     # Check presence of an object given the label
     for obj in detected_objects:
       if obj['label'] == label:
@@ -50,6 +50,11 @@ def get_bbox_location(detected_objects, label):
         x1, y1, x2, y2 = obj['bbox']
         locs.append(f"[x1={x1:.0f}, y1={y1:.0f}, x2={x2:.0f}, y2={y2:.0f}]")
     return ", ".join(locs) if locs else "Not present"
+
+def infer_class_at_bbox(detected_objects, bbox):
+    for obj in detected_objects:
+        if obj['bbox'] == bbox:
+            return obj['label']
 
 # Object description
 def closest_color_name(rgb):
@@ -96,9 +101,8 @@ def infer_time_of_day(image_path):
 
 def compute_traffic_density(detected_objects, image_path):
     # Compute traffic density based on heuristics 
-    vehicle_labels = ["car", "bus", "truck", "bike", "motorbike", "autorickshaw"]
+    vehicle_labels = ["car", "bus", "truck", "motorcycle", "autorickshaw"]
     vehicle_count = sum(count_objects(detected_objects, label) for label in vehicle_labels)
-
     try:
         image = Image.open(image_path)
         img_width, img_height = image.size
@@ -117,7 +121,7 @@ def compute_traffic_density(detected_objects, image_path):
     score = (vehicle_count * 0.5 + vehicle_area_ratio * 100 * 0.5)
     if score < 3:
         return "Low"
-    elif score < 7:
+    elif score < 7: 
         return "Moderate"
     else:
         return "High"
@@ -202,7 +206,7 @@ def generate_spatial_scene_graph(detected_objects, iou_threshold=0.1, near_dista
             "subject": label_a,
             "subject_bbox": bbox_a,
             "object": label_b,
-            "object_bbox": bbox_b
+            "object_bbox": bbox_b,
             "relation": relation
         })
     return graph
