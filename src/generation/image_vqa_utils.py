@@ -2,6 +2,7 @@ import json
 from PIL import Image
 import io
 import numpy as np
+import os
 
 import cv2
 import webcolors
@@ -89,15 +90,49 @@ def infer_color_of_object(image_path, detected_objects, label):
     return "Unknown"
 
 # Surrounding Description
-def infer_time_of_day(image_path):
-    # Infer time of day from the image using a single rule
-    image = Image.open(image_path).convert("L")
-    brightness = np.mean(np.array(image))
+# def infer_time_of_day(image_path):
+#     # Infer time of day from the image using a single rule
+#     image = Image.open(image_path).convert("L")
+#     brightness = np.mean(np.array(image))
 
-    if brightness < 50:
+#     if brightness < 50:
+#         return "night"
+#     else:
+#         return "day"
+
+def infer_time_of_day(image_path, night_thresh=70, day_thresh=100):
+    """
+    Infers time of day using filename hint first, then brightness if needed.
+
+    Args:
+        image_path (str): Path to the image.
+        night_thresh (int): Max mean brightness for 'night'.
+        day_thresh (int): Min mean brightness for 'day'.
+
+    Returns:
+        str: 'night', 'dusk/dawn', or 'day'
+    """
+    filename = os.path.basename(image_path).lower()
+
+    # 1. Check filename hints
+    if "Night" in filename:
         return "night"
+    elif "Day" in filename:
+        return "day"
+
+    # 2. Fallback to luminance analysis
+    image = Image.open(image_path).convert("RGB")
+    image_np = np.array(image)
+    grayscale = np.dot(image_np[..., :3], [0.299, 0.587, 0.114])
+    brightness = np.mean(grayscale)
+
+    if brightness < night_thresh:
+        return "night"
+    elif brightness < day_thresh:
+        return "dusk/dawn"
     else:
         return "day"
+
 
 def compute_traffic_density(detected_objects, image_path):
     # Compute traffic density based on heuristics 

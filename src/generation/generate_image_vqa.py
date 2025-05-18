@@ -5,6 +5,11 @@ import os
 from tqdm import tqdm
 import csv
 
+# Set the random seed for reproducibility
+seed = 38
+random.seed(seed)
+np.random.seed(seed)
+
 class VQAGenerator:
     def __init__(self, image_path, detection_file_path):
         self.image_path = image_path
@@ -39,7 +44,7 @@ class VQAGenerator:
                 "answer": "Yes" if has_object(self.shapes, class_a) else "No"
             },
             {
-                "question": f"Are there more {class_a}s than {class_b}s?",
+                "question": f"Are there more {class_a}'s than {class_b}'s?",
                 "answer": "Yes" if count_objects(self.shapes, class_a) > count_objects(self.shapes, class_b) else "No"
             }
         ]
@@ -90,12 +95,7 @@ class VQAGenerator:
             {
                 "question": "What is the traffic density?",
                 "answer": traffic_density
-            },
-             {
-                "question": "What is the surroundings?",
-                "answer": infer_scene_type(self.detected_objects, traffic_density)
-            },
-           
+            },  
         ]
 
     def answer_spatial_relationship_questions_from_graph(self):
@@ -131,16 +131,6 @@ class VQAGenerator:
             "answer": answer
         }]
 
-
-    # def answer_risk_analysis_questions(self, srl):
-    #     # srl is expected to be a dictionary with scene context info
-    #     at_risk = srl.get("scene_context", {}).get("object_at_risk", None)
-    #     return [
-    #         {
-    #             "question": "Is there an object at risk?",
-    #             "answer": f"Yes: {at_risk}" if at_risk else "No"
-    #         }
-    #     ]
 
     def answer_all_questions(self, srl=None):
         # srl is optional and only used for risk analysis
@@ -189,7 +179,7 @@ def process_directory(image_dir, output_csv):
 
 
 if __name__ == "__main__":
-    image_dir = r"dataset/image_data/images/train"
-    output_csv = "vqa_dataset.csv"
+    image_dir = r"dataset/image_data/images/test"
+    output_csv = "vqa_dataset_test.csv"
     process_directory(image_dir, output_csv)
     print(f"VQA results saved to {output_csv}")
