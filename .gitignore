@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
-dataset/
+dataset/image_data/
 
 # Distribution / packaging
 .Python

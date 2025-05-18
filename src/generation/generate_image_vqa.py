@@ -179,7 +179,7 @@ def process_directory(image_dir, output_csv):
 
 
 if __name__ == "__main__":
-    image_dir = r"dataset/image_data/images/test"
-    output_csv = "vqa_dataset_test.csv"
+    image_dir = r"dataset/image_data/images/train"
+    output_csv = "dataset/vqa_dataset_train.csv"
     process_directory(image_dir, output_csv)
     print(f"VQA results saved to {output_csv}")
