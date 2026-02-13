@@ -2,6 +2,13 @@
 
 A multitask multimodal dataset for autonomous driving scene understanding in diverse Indian road environments.
 
+<p align="center">
+  <img src="assets/day_grid.png" alt="Daytime Road Scenes" width="49%"/>
+  <img src="assets/night_grid.png" alt="Nighttime Road Scenes" width="49%"/>
+  <br/>
+  <em>Sample scenes from the Roadscapes dataset: Daytime (left) and Nighttime (right)</em>
+</p>
+
 ## Overview
 
 Roadscapes is a comprehensive dataset designed to advance research in visual scene understanding for autonomous driving systems, with a particular focus on unstructured and diverse driving environments typical of Indian roads. The dataset consists of up to 9,000 annotated images capturing various road scenarios, accompanied by question-answer pairs for multiple vision-language tasks.
