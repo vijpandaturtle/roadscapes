@@ -54,8 +54,8 @@ The dataset has been specifically curated to represent the complexity and divers
 ### Installation
 
 ```bash
-git clone https://github.com/roadscapes/roadscapes_data.git
-cd roadscapes_data
+git clone https://github.com/roadscapes/roadscapes.git
+cd roadscapes
 ```
 
 ### Requirements
