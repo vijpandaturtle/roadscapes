@@ -144,18 +144,18 @@ Initial baseline results using vision-language models are provided in the paper.
 - **Object Description**: Paligemma (0.501)
 - **Surrounding Description**: GPT-4o (0.701)
 
-<!-- ## Citation
+## Citation
 
 If you use Roadscapes in your research, please cite our paper:
 
 ```bibtex
-@article{roadscapes2024,
-  title={Roadscapes: A Multitask Multimodal Dataset for Road Scene Understanding},
-  author={[Authors]},
-  journal={[Journal/Conference]},
-  year={2024}
+@article{iyer2026roadscapesqa,
+  title={RoadscapesQA: A Multitask, Multimodal Dataset for Visual Question Answering on Indian Roads},
+  author={Iyer, Vijayasri and Rathinagiriswaran, Maahin and S, Jyothikamalesh},
+  journal={arXiv preprint arXiv:2602.12877},
+  year={2026}
 }
-``` -->
+```
 
 ## License
 
