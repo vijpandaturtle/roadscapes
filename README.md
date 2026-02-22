@@ -4,6 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2602.12877-b31b1b.svg)](https://arxiv.org/abs/2602.12877)
 [![HuggingFace Dataset](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-yellow)](https://huggingface.co/datasets/vijpandaturtle/roadscapes)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![GitHub Stars](https://img.shields.io/github/stars/vijpandaturtle/roadscapes?style=social)](https://github.com/vijpandaturtle/roadscapes)
 
 A multitask multimodal dataset for autonomous driving scene understanding in diverse Indian road environments.
 
