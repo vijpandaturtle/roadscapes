@@ -72,14 +72,6 @@ roadscapes_data/
 │   │   └── train/
 │   │       ├── Sequence_Day_n/
 │   │       └── Sequence_Night_n/
-│   └── segmentation_masks/
-│       └── images/
-│           ├── test/
-│           │   ├── Sequence_Day_n/
-│           │   └── Sequence_Night_n/
-│           └── train/
-│               ├── Sequence_Day_n/
-│               └── Sequence_Night_n/
 ├── annotations/
 │   ├── vqa_train.csv
 │   └── vqa_test.csv
